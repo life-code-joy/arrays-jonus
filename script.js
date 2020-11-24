@@ -1,5 +1,10 @@
 'use strict';
 
+
+
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -74,3 +79,41 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+let array = ['a', 'b', 'c', 'd', 'e'];
+
+console.log(array.slice(2));
+
+// the last is not outputted
+console.log(array.slice(2, 5));
+
+//-1 gets the last 
+console.log(array.slice(-1));
+
+//starts at 2 and ommits and excludes the last two
+console.log(array.slice(1, -2));
+
+
+
+// for loop
+
+const cash = [120, 44, -90, -36, 789, 655];
+/*
+for (const cashOutput of cash) {
+  if (cashOutput > 0) {
+    console.log(`You have ${cashOutput} dollars in your account`);
+  } else {
+    console.log(`You have withdrawn ${Math.abs(cashOutput)} dollars`)
+  }
+};
+*/
+
+// forEach
+//you can't breakout, goes through all. If you must break somewhere in a loop youmust use the for of loop. But other than that it is up to you which loop you wqant to use
+
+cash.forEach((displayCash, index, cash) => {
+  displayCash > 0 ? console.log(`${index}: You have ${displayCash} dollars in your account`) : console.log(`${index}: You have withdrawn ${Math.abs(displayCash)} dollars`);
+
+})
+
+
