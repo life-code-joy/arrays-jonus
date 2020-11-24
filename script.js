@@ -70,11 +70,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -117,7 +113,7 @@ cash.forEach((displayCash, index, cash) => {
 
 })
 
-
+/*
 
 // slice doesn't mutate the array - doesn't change the original
 let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -151,3 +147,25 @@ console.log([...arr, ...arr2]); //same result - doesn't mutate
 //Join - seperates and adds a seperator that you specify between each element
 console.log(letters.join('  🍇 '));
 
+
+*/
+
+//Maps
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (countryMoney, value, map) {
+  console.log(countryMoney, value, map);
+});
+
+//Sets
+// the _  is a throw away variable (placeholder or unnessary)
+const currenciesUnique = new Set(['USD', 'EUR', 'CDA', 'USD']);
+console.log(currenciesUnique);
+
+currenciesUnique.forEach((value, _, map) => {
+  console.log(value, _, map);
+});
