@@ -74,3 +74,35 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// slice doesn't mutate the array - doesn't change the original
+let arr = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2));
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+
+// you can create a shallow copy by using the slice with no arguments and also by the spread operator - up to you
+// the only time you want to use the slice is to chain mutiple methods together
+console.log(arr.slice());
+console.log([...arr]);
+
+//SPLICE - it mutates the array - it changes the original. This is why we use it. We want to delete a few elements etc
+console.log(arr.splice(-1));
+console.log(arr.splice(1, 2)); // start at 1 and remove 2 elements
+
+console.log(arr); // now only a, d remain
+
+//Reverse - it mutated the origianal array
+
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+
+//concat - concat 2 arrays - up to you which you want to use
+const letters = arr.concat(arr2); //doesn't mutate
+console.log(letters);
+console.log([...arr, ...arr2]); //same result - doesn't mutate
+
+//Join - seperates and adds a seperator that you specify between each element
+console.log(letters.join('  🍇 '));
