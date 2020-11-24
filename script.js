@@ -80,7 +80,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-<<<<<<< HEAD
+
 let array = ['a', 'b', 'c', 'd', 'e'];
 
 console.log(array.slice(2));
@@ -118,7 +118,7 @@ cash.forEach((displayCash, index, cash) => {
 })
 
 
-=======
+
 // slice doesn't mutate the array - doesn't change the original
 let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(arr.slice(2));
@@ -150,4 +150,4 @@ console.log([...arr, ...arr2]); //same result - doesn't mutate
 
 //Join - seperates and adds a seperator that you specify between each element
 console.log(letters.join('  🍇 '));
->>>>>>> 8398c4ad92ff79804027418b1c83d7e0b33cc1c9
+
