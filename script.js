@@ -1,10 +1,5 @@
 'use strict';
 
-
-
-
-
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -66,16 +61,34 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// start adding your code the app starting here
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}€</div>
+   </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+// tutorial array practice, will comment out all to start te app
+
+/*
 
 let array = ['a', 'b', 'c', 'd', 'e'];
 
@@ -84,17 +97,18 @@ console.log(array.slice(2));
 // the last is not outputted
 console.log(array.slice(2, 5));
 
-//-1 gets the last 
+//-1 gets the last
 console.log(array.slice(-1));
 
 //starts at 2 and ommits and excludes the last two
 console.log(array.slice(1, -2));
 
-
-
 // for loop
 
 const cash = [120, 44, -90, -36, 789, 655];
+
+*/
+
 /*
 for (const cashOutput of cash) {
   if (cashOutput > 0) {
@@ -108,11 +122,15 @@ for (const cashOutput of cash) {
 // forEach
 //you can't breakout, goes through all. If you must break somewhere in a loop youmust use the for of loop. But other than that it is up to you which loop you wqant to use
 
+/*
 cash.forEach((displayCash, index, cash) => {
-  displayCash > 0 ? console.log(`${index}: You have ${displayCash} dollars in your account`) : console.log(`${index}: You have withdrawn ${Math.abs(displayCash)} dollars`);
-
-})
-
+  displayCash > 0
+    ? console.log(`${index}: You have ${displayCash} dollars in your account`)
+    : console.log(
+        `${index}: You have withdrawn ${Math.abs(displayCash)} dollars`
+      );
+});
+*/
 /*
 
 // slice doesn't mutate the array - doesn't change the original
@@ -150,6 +168,7 @@ console.log(letters.join('  🍇 '));
 
 */
 
+/*
 //Maps
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -157,15 +176,47 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-currencies.forEach(function (countryMoney, value, map) {
-  console.log(countryMoney, value, map);
+//Using forEach
+// value, key/index, whole Map object
+// same as the 3 paramters when looping an array-current element of the array,index, the entire array
+currencies.forEach(function (value, key, map) {
+  // console.log(value, key, map);
+  console.log(`${key} ${value} ${map}`);
 });
 
+*/
+
+/*
 //Sets
 // the _  is a throw away variable (placeholder or unnessary)
 const currenciesUnique = new Set(['USD', 'EUR', 'CDA', 'USD']);
 console.log(currenciesUnique);
 
+// a set doesn't have a key only value, you should omit the second argument.JS kept the parameters the same for sets and arrays.Use an _ as a throw away variables as convention
 currenciesUnique.forEach((value, _, map) => {
   console.log(value, _, map);
 });
+*/
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+  // console.log(dogsJuliaCorrected);
+
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+  console.log(dogs);
+  //loop
+  dogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(
+        `Dog number ${i + 1} is an 🐕 adult and is ${dog} years old.`
+      );
+    } else {
+      console.log(`Dog number ${i + 1} is a 🐩 puppy.`);
+    }
+  });
+};
+
+checkDogs([3, 5, 2, 7, 12], [4, 1, 15, 8, 3]);
+checkDogs([1, 6, 3, 12, 2], [1, 4, 15, 23, 3]);
