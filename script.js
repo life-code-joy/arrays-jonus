@@ -198,14 +198,16 @@ currenciesUnique.forEach((value, _, map) => {
 });
 */
 
+//notes coding challenge
+/*
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrected = dogsJulia.slice();
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
+  dogsJuliaCorrected.splice(0, 1); //stars from zero and splices 1
+  dogsJuliaCorrected.splice(-2); //starts from end and splices 2
   // console.log(dogsJuliaCorrected);
 
   const dogs = dogsJuliaCorrected.concat(dogsKate);
-  console.log(dogs);
+  // console.log(dogs);
   //loop
   dogs.forEach(function (dog, i) {
     if (dog >= 3) {
@@ -220,3 +222,49 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 checkDogs([3, 5, 2, 7, 12], [4, 1, 15, 8, 3]);
 checkDogs([1, 6, 3, 12, 2], [1, 4, 15, 23, 3]);
+
+*/
+//lectures - map 147
+//notes - convert EU to US dollars. store the new array into a variable
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurtoUSD = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurtoUSD;
+// });
+//notes - change to an arrow function
+const movementsUSD = movements.map(mov => mov * eurtoUSD);
+console.log(movements);
+console.log(movementsUSD);
+
+//notes - more practice with map. Map also has acsess to the current index and the whole array - like forEach
+/*
+const movementsDescriptions = movements.map((mov, i, arr) => {
+  if (mov > 0) {
+    return `Movement ${i + 1}: You deposited ${mov}`;
+  } else {
+    return `Movement ${i + 1}: You withdrew ${mov}`;
+  }
+});
+
+console.log(movementsDescriptions);
+*/
+
+//notes simplfy the if to ternary operator - can omit the arr(don't need to return the whole array for this example)
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+
+  // if (mov > 0) {
+  //   return `Movement ${i + 1}: You deposited ${mov}`;
+  // } else {
+  //   return `Movement ${i + 1}: You withdrew ${mov}`;
+  // }
+);
+
+console.log(movementsDescriptions);
