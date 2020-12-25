@@ -78,6 +78,30 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+//notes- create user function with
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase() //returns a string to can use split
+      .split(' ') //returns an array so can use map next
+      .map(name => name[0]) //returns an array so join can be used
+      .join('');
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
+// console.log(createUsernames('stevie ray vaughn'));
+
+/*
+const username = user
+  .toLowerCase()//returns a string to can use split
+  .split(' ')//returns an array so can use map next
+  .map(name => name[0])//returns an array so join can be used
+  .join('');
+
+console.log(username);
+*/
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -226,7 +250,7 @@ checkDogs([1, 6, 3, 12, 2], [1, 4, 15, 23, 3]);
 */
 //lectures - map 147
 //notes - convert EU to US dollars. store the new array into a variable
-
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const eurtoUSD = 1.1;
@@ -234,11 +258,13 @@ const eurtoUSD = 1.1;
 // const movementsUSD = movements.map(function (mov) {
 //   return mov * eurtoUSD;
 // });
+*/
 //notes - change to an arrow function
+/*
 const movementsUSD = movements.map(mov => mov * eurtoUSD);
 console.log(movements);
 console.log(movementsUSD);
-
+*/
 //notes - more practice with map. Map also has acsess to the current index and the whole array - like forEach
 /*
 const movementsDescriptions = movements.map((mov, i, arr) => {
@@ -253,7 +279,7 @@ console.log(movementsDescriptions);
 */
 
 //notes simplfy the if to ternary operator - can omit the arr(don't need to return the whole array for this example)
-
+/*
 const movementsDescriptions = movements.map(
   (mov, i) =>
     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
@@ -268,3 +294,29 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+*/
+//lectures - filter method 149
+//notes - returns a boolean for the condition and oly display the values that are true
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+console.log(movements);
+console.log(deposits);
+//notes- using a forOf loop to do the same thing
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+// const withdrawal = movements.filter(function (withdrew) {
+//   return withdrew < 0;
+// });
+// console.log(withdrawal);
+
+//notes as an arrow function
+
+const withdrawal = movements.filter(mov => mov < 0);
+console.log(withdrawal);
