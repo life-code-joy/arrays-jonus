@@ -320,3 +320,24 @@ console.log(depositsFor);
 
 const withdrawal = movements.filter(mov => mov < 0);
 console.log(withdrawal);
+
+//lectures - reduce method
+//notes - to boild down all elements to in an array to one value.
+//notes - along with acc,cur,i,arr  it has a second parameter (the initial value of the acc, which here we set to 0)want start adding at 0
+const balance = movements.reduce(function (acc, cur, i, arr) {
+  console.log(`Iteration ${i} ${acc}`);
+  return acc + cur;
+}, 0);
+console.log(balance);
+
+//notes - arrow function
+
+const balance2 = movements.reduce((acc, cur, i, arr) => acc + cur, 0);
+console.log(balance2);
+
+//notes - for loop
+let balance3 = 0;
+for (const mov2 of movements) {
+  balance3 += mov2;
+}
+console.log(balance3);
