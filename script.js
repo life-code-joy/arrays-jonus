@@ -79,6 +79,13 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+//notes - calculate total and print the balance
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
+
 //notes- create user function with
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -297,7 +304,7 @@ console.log(movementsDescriptions);
 */
 //lectures - filter method 149
 //notes - returns a boolean for the condition and oly display the values that are true
-
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposits = movements.filter(function (mov) {
   return mov > 0;
@@ -320,10 +327,11 @@ console.log(depositsFor);
 
 const withdrawal = movements.filter(mov => mov < 0);
 console.log(withdrawal);
-
+*/
 //lectures - reduce method
 //notes - to boild down all elements to in an array to one value.
 //notes - along with acc,cur,i,arr  it has a second parameter (the initial value of the acc, which here we set to 0)want start adding at 0
+/*
 const balance = movements.reduce(function (acc, cur, i, arr) {
   console.log(`Iteration ${i} ${acc}`);
   return acc + cur;
@@ -341,3 +349,34 @@ for (const mov2 of movements) {
   balance3 += mov2;
 }
 console.log(balance3);
+*/
+
+//notes - other uses for the reduce method - maximum value there are msny others like string, object etc
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
+*/
+//lectures - coding challenge 151
+
+const dogAgeHumanYears = function (ages) {
+  //map
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  console.log(humanAges);
+  //filter
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges, adults);
+  // get avg reduce
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  console.log(average);
+  return average;
+};
+
+const avg1 = dogAgeHumanYears([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = dogAgeHumanYears([16, 6, 10, 5, 6, 1, 4]);
+
+console.log(avg1);
+console.log(avg2);
