@@ -77,36 +77,33 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 //notes - calculate total and print the balance
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} €`;
 };
-calcDisplayBalance(account1.movements);
 
 //notes calcDisplaySummary
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     //in
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} €`;
 
   //out
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
   // interest
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(mov => (mov * 1.2) / 100)
+    .map(mov => (mov * acc.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
-calcDisplaySummary(account1.movements);
 
 //notes- create user function with
 const createUsernames = function (accs) {
@@ -131,6 +128,36 @@ const username = user
 
 console.log(username);
 */
+//notes - Event Handlers
+let currentAccount; //define outside the function because we will need it later
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  // get pin
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('login');
+    //display UI and message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    //clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    containerApp.style.opacity = 100;
+    //Display movements
+    displayMovements(currentAccount.movements);
+    //Display Balance
+    calcDisplayBalance(currentAccount.movements);
+    //Display Summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -383,7 +410,7 @@ const max = movements.reduce((acc, mov) => {
 console.log(max);
 */
 //lectures - coding challenge 151
-
+/*
 const dogAgeHumanYears = function (ages) {
   //map
   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
@@ -402,10 +429,11 @@ const avg2 = dogAgeHumanYears([16, 6, 10, 5, 6, 1, 4]);
 
 console.log(avg1);
 console.log(avg2);
-
+*/
 //lectures 152 chaining
 //notes PIPELINE - you cam chain as long as the method returns an array. The reduce only returns a value so you can't chain after it.
 //notes can be hard to debug, if you want to debug expand the arrow and call the third parmeter ARR this will display what is ging on at that step of the pipeline
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUSD = 1.1;
 const totalDepositsUSD = movements
@@ -414,9 +442,9 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(totalDepositsUSD);
-
+*/
 //lectures  coding <challenge 3 #153
-
+/*
 const dogAgeHumanYears2 = function (ages) {
   //map
   const humanAges2 = ages
@@ -432,3 +460,12 @@ console.log(dogAgeHumanYears);
 
 console.log(avg3);
 console.log(avg4);
+*/
+// lectures - find method
+/*
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+*/
