@@ -533,3 +533,37 @@ console.log(firstWithdrawal);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
+//lectures 159 - flat and flatmap
+
+/*
+const arr = [[1, 2, 3], 4, 5, [5, 6, 7, 8]];
+console.log(arr.flat()); // [1,2,3,4,5,6,7,8]
+
+const deepArray = [[1, 2, [3, 4, 5]], 6, 7, 8];
+console.log(deepArray.flat(2)); //[1,2,3,4,5,6,7,8]
+
+//get all accounts flatten and get total
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const totalMovements = allMovements.reduce((acc, mov) => acc + mov, 0);
+console.log(totalMovements); //17840
+*/
+
+//notes - we can now use chaining to make more beautiful
+/*
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+*/
+//notes - using flatMap() because flat follows map so often the flatMap was created to put these together -  better performance
+
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
