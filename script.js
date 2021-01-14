@@ -585,3 +585,17 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
+
+const recFoodPor = function (dogs) {
+  const dogFoodFormula = dogs.weight ** 0.75 * 28;
+
+  dogs.forEach(
+    dog => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+  );
+
+  console.log(typeof dogFoodFormula + 1);
+  const dogFoodAmount = dogs * dogFoodFormula;
+  console.log(dogFoodAmount + 'ggggg');
+};
+recFoodPor(dogs);
+console.log(dogs);
