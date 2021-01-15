@@ -583,19 +583,38 @@ console.log(overallBalance2);
 const dogs = [
   { weight: 8, curFood: 200, owners: ['Matilda'] },
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 24, curFood: 100, owners: ['Alice'] },
+  { weight: 32, curFood: 240, owners: ['Bob'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
+//1
+
 const recFoodPor = function (dogs) {
-  const dogFoodFormula = dogs.weight ** 0.75 * 28;
-
-  dogs.forEach(
-    dog => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
-  );
-
-  console.log(typeof dogFoodFormula + 1);
-  const dogFoodAmount = dogs * dogFoodFormula;
-  console.log(dogFoodAmount + 'ggggg');
+  dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
 };
 recFoodPor(dogs);
 console.log(dogs);
+
+//2
+console.log(dogs[1].owners, dogs[1]);
+
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(dogSarah);
+console.log(
+  `Sara's dog is eating too ${
+    dogSarah.curFood > dogSarah.recFood ? 'much' : 'too little'
+  } `
+);
+//3
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .map(dog => dog.owners)
+  .flat();
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .map(dog => dog.owners)
+  .flat();
+console.log(ownersEatTooLittle);
